@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "pretest": "rm -rf build && tsc",
+    "test": "jasmine ./build/specs/*-spec.js"
+  },
+  "devDependencies": {
+    "typescript": "3.1.6",
+    "jasmine": "3.3.0",
+    "@types/jasmine": "2.6.0",
+    "selenidejs": "0.2.8",
+    "chromedriver": "2.45.0"
+  }
+}

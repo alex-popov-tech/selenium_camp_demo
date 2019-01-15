@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": false,
+    "removeComments": true,
+    "outDir": "build",
+    "types": ["jasmine", "node"]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
