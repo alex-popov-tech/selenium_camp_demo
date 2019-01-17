@@ -7,6 +7,6 @@ export class Navigation {
 
     async translate() {
         await this.button.click();
-        await this.menus.filterBy(have.exactText('Translate')).first().click();
+        await this.menus.findBy(have.exactText('Translate')).click();
     }
 }

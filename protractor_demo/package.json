@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "pretest": "rm -rf build && tsc",
+    "test": "protractor build/protractor.conf.js",
+    "start": "webdriver-manager start",
+    "update": "webdriver-manager update",
+    "stop": "webdriver-manager stop"
+  },
+  "devDependencies": {
+    "@types/node": "10.12.18",
+    "@types/jasmine": "3.3.5",
+    "typescript": "3.2.2",
+    "protractor": "5.4.2"
+  }
+}
