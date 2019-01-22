@@ -19,7 +19,7 @@ export class Translate {
 
 
     public async translate(text: string): Promise<void> {
-        await browser.wait(ExpectedConditions.elementToBeClickable(this.source), 3000);
+        await browser.wait(ExpectedConditions.visibilityOf(this.source), 3000);
         await this.source.click();
         await this.source.sendKeys(text + protractor.Key.ENTER);
     }
@@ -40,7 +40,7 @@ export class Translate {
     private async chooseFromLang(lang: string): Promise<void> {
         await browser.wait(ExpectedConditions.elementToBeClickable(this.openSource), 3000);
         await this.openSource.click();
-        await browser.wait(ExpectedConditions.elementToBeClickable(this.slSearch), 3000);
+        await browser.wait(ExpectedConditions.visibilityOf(this.slSearch), 3000);
         await this.slSearch.sendKeys(lang + protractor.Key.ENTER);
     }
 
@@ -48,7 +48,7 @@ export class Translate {
         await browser.wait(ExpectedConditions.elementToBeClickable(this.targetSource), 3000);
         await this.targetSource.click();
 
-        await browser.wait(ExpectedConditions.elementToBeClickable(this.tlSearch), 3000);
+        await browser.wait(ExpectedConditions.visibilityOf(this.tlSearch), 3000);
         await this.tlSearch.sendKeys(lang + protractor.Key.ENTER);
     }
 }

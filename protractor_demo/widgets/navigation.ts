@@ -22,7 +22,7 @@ export class Navigation {
         await browser.wait(ExpectedConditions.visibilityOf(this.menus.first()));
         const count = await this.menus.count();
         for (let i = 0; i < count; i++) {
-            const menu = await this.menus.get(i);
+            const menu = this.menus.get(i);
             if (await menu.getText() === name) {
                 return menu;
             }

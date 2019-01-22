@@ -10,12 +10,12 @@ export class Search {
         this.input = $('[name="q"]');
     }
 
-    public async open(url: string = 'http://google.com/ncr'): Promise<void> {
-        await browser.get(url);
+    public async open(): Promise<void> {
+        await browser.get('http://google.com/ncr');
     }
 
     public async search(text: string): Promise<void> {
-        await browser.wait(ExpectedConditions.elementToBeClickable(this.input), 5000);
+        await browser.wait(ExpectedConditions.visibilityOf(this.input), 5000);
         await this.input.sendKeys(text);
         await browser.actions().sendKeys(protractor.Key.ENTER).perform();
     }

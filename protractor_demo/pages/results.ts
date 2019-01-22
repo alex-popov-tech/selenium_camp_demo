@@ -19,7 +19,7 @@ export class Results {
     }
 
     public async followNthResultLink(index: number): Promise<void> {
-        const container: ElementFinder = await this.elements.get(index);
+        const container = this.elements.get(index);
         const result = container.$('a');
         await browser.wait(ExpectedConditions.elementToBeClickable(result), 5000);
         await result.click();
