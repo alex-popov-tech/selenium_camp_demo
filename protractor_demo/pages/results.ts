@@ -13,8 +13,7 @@ export class Results {
     public async shouldHaveNthResults(quantity: number): Promise<void> {
         await browser.wait(async () => {
             let result;
-            const count = await this.elements.count();
-            return count === quantity;
+            return quantity === await this.elements.count();
         }, 5000);
     }
 

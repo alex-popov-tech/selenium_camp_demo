@@ -20,13 +20,12 @@ export class Translate {
 
     public async translate(text: string): Promise<void> {
         await browser.wait(ExpectedConditions.visibilityOf(this.source), 3000);
-        await this.source.click();
         await this.source.sendKeys(text + protractor.Key.ENTER);
     }
 
     public async shouldHaveTranslation(translation: string): Promise<void> {
+        await browser.wait(ExpectedConditions.visibilityOf(this.translation), 3000);
         await browser.wait(async () => {
-            await browser.wait(ExpectedConditions.elementToBeClickable(this.translation), 3000);
             const text = await this.translation.getText();
             return text.includes(translation);
         }, 3000);
