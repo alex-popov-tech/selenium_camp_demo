@@ -1,29 +1,28 @@
-import { browser, ExpectedConditions } from 'protractor';
+import {$, $$, browser, ElementArrayFinder, ElementFinder, ExpectedConditions} from 'protractor';
 
 
 export class Navigation {
-    private readonly button = browser.$('#gbwa');
-    private readonly menus = this.button.$('.gb_ca').$$('.gb_Z');
+    private readonly button: ElementFinder;
+    private readonly menus: ElementArrayFinder;
 
-    async translate() {
-        await browser.wait(ExpectedConditions.visibilityOf(this.button));
+    constructor() {
+        this.button = $('#gbwa');
+        this.menus = $$('.gb_T');
+    }
+
+    public async translate(): Promise<void> {
+        await browser.wait(ExpectedConditions.elementToBeClickable(this.button), 3000);
         await this.button.click();
-
-        await browser.wait(async () => {
-            const webelements = await this.menus.getWebElements();
-            for (const webelement of webelements) {
-                if ((await webelement.isDisplayed()) && ('Translate' === await webelement.getText())) {
-                    return true;
-                }
-            }
-            return false;
-        });
-
-        const webelements = await this.menus.getWebElements();
-        for (const webelement of webelements) {
-            if ((await webelement.isDisplayed()) && ('Translate' === await webelement.getText())) {
-                await webelement.click();
+        await browser.wait(ExpectedConditions.visibilityOf(this.menus.first()));
+        const count = await this.menus.count();
+        let menu: ElementFinder;
+        for (let i = 0; i < count; i++) {
+            menu = this.menus.get(i);
+            if (await menu.getText() === 'Translate') {
+                break;
             }
         }
+        await browser.wait(ExpectedConditions.elementToBeClickable(menu), 3000);
+        await menu.click();
     }
 }

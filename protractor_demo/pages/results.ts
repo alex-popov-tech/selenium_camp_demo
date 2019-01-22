@@ -1,27 +1,30 @@
 import { Navigation } from '../widgets/navigation';
-import { browser, by } from 'protractor';
+import {$$, browser, by, ElementArrayFinder, ElementFinder, ExpectedConditions} from 'protractor';
 
 export class Results {
+    private readonly navigation: Navigation;
+    private readonly elements: ElementArrayFinder;
 
-    private readonly navigationMenu = new Navigation();
+    constructor() {
+        this.navigation = new Navigation();
+        this.elements = $$('.g .r');
+    }
 
-    async shouldHaveNthResults(quantity) {
-        await browser.wait(function () {
-            return browser.$$('.g .r').getWebElements().then(webelements => webelements.length === quantity, err => false);
+    public async shouldHaveNthResults(quantity: number): Promise<void> {
+        await browser.wait(async () => {
+            let result;
+            return quantity === await this.elements.count();
         }, 5000);
     }
 
-    async followNthResultLink(index) {
-        await browser.wait(async function () {
-            const webelements = await browser.$$('.g .r').getWebElements();
-            const resultContainer = await webelements[index].findElement(by.css('a'));
-            return resultContainer.isDisplayed();
-        }, 3000);
-        const webelements = await browser.$$('.g .r').getWebElements();
-        await webelements[0].findElement(by.css('a')).then(webelement => webelement.click());
+    public async followNthResultLink(index: number): Promise<void> {
+        const container = this.elements.get(index);
+        const result = container.$('a');
+        await browser.wait(ExpectedConditions.elementToBeClickable(result), 5000);
+        await result.click();
     }
 
-    async navigateToTranslation() {
-        await this.navigationMenu.translate();
+    public async navigateToTranslation(): Promise<void> {
+        await this.navigation.translate();
     }
 }
