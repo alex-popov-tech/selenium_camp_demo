@@ -1,22 +1,26 @@
 import { Navigation } from '../widgets/navigation';
-import { browser, ExpectedConditions, protractor } from 'protractor';
+import { $, browser, ElementFinder, ExpectedConditions, protractor } from 'protractor';
 
 export class Search {
+    private readonly navigation: Navigation;
+    private readonly input: ElementFinder;
 
-    private readonly navigationMenu = new Navigation();
-    private readonly searchInput = browser.$('[name="q"]');
-
-    async open() {
-        await browser.get('http://google.com/ncr');
+    constructor() {
+        this.navigation = new Navigation();
+        this.input = $('[name="q"]');
     }
 
-    async search(text) {
-        await browser.wait(ExpectedConditions.visibilityOf(this.searchInput), 5000);
-        await this.searchInput.sendKeys(text);
+    public async open(url: string = 'http://google.com/ncr'): Promise<void> {
+        await browser.get(url);
+    }
+
+    public async search(text: string): Promise<void> {
+        await browser.wait(ExpectedConditions.visibilityOf(this.input), 5000);
+        await this.input.sendKeys(text);
         await browser.actions().sendKeys(protractor.Key.ENTER).perform();
     }
 
     async navigateToTranslation() {
-        await this.navigationMenu.translate();
+        await this.navigation.translate();
     }
 }

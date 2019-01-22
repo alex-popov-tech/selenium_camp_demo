@@ -1,14 +1,18 @@
-import { browser, ExpectedConditions } from 'protractor';
+import {$, $$, browser, ElementArrayFinder, ElementFinder, ExpectedConditions} from 'protractor';
 
 
 export class Navigation {
-    private readonly button = browser.$('#gbwa');
-    private readonly menus = this.button.$('.gb_ca').$$('.gb_Z');
+    private readonly button: ElementFinder;
+    private readonly menus: ElementArrayFinder;
 
-    async translate() {
-        await browser.wait(ExpectedConditions.visibilityOf(this.button));
+    constructor() {
+        this.button = $('.gb_xc');
+        this.menus = $$('.gb_T');
+    }
+
+    public async translate(): Promise<void> {
+        await browser.wait(ExpectedConditions.elementToBeClickable(this.button), 3000);
         await this.button.click();
-
         await browser.wait(async () => {
             const webelements = await this.menus.getWebElements();
             for (const webelement of webelements) {

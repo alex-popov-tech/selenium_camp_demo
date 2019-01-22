@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "pretest": "rm -rf build && tsc",
+    "pretest": "rm -rf build && tsc && npm run update",
     "test": "protractor build/protractor.conf.js",
     "start": "webdriver-manager start",
     "update": "webdriver-manager update",

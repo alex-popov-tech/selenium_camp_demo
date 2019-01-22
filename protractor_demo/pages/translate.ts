@@ -1,39 +1,52 @@
-import { browser, ExpectedConditions, protractor } from 'protractor';
+import { $, browser, ElementFinder, ExpectedConditions, protractor } from 'protractor';
 
 export class Translate {
+    private readonly source: ElementFinder;
+    private readonly translation: ElementFinder;
+    private readonly openSource: ElementFinder;
+    private readonly targetSource: ElementFinder;
+    private readonly slSearch: ElementFinder;
+    private readonly tlSearch: ElementFinder;
 
-    async translate(text: string) {
-        await browser.$('#source').sendKeys(text + protractor.Key.ENTER);
+    constructor() {
+        this.source = $('#source');
+        this.translation = $('span.translation');
+        this.openSource = $('.tlid-open-source-language-list');
+        this.targetSource = $('.tlid-target-source-language-list');
+        this.slSearch = $('#sl_list-search-box');
+        this.tlSearch = $('#tl_list-search-box');
     }
 
-    async shouldHaveTranslation(translation: string) {
-        await browser.wait(async function () {
-            browser.$('span.translation').getText().then(text => text.includes(translation));
+
+    public async translate(text: string): Promise<void> {
+        await this.source.sendKeys(text + protractor.Key.ENTER);
+    }
+
+    public async shouldHaveTranslation(translation: string): Promise<void> {
+        await browser.wait(async () => {
+            const text = await this.translation.getText();
+            return text.includes(translation);
         }, 3000);
     }
 
-    async chooseLangs(from: string, to: string) {
+    public async chooseLangs(from: string, to: string): Promise<void> {
         await this.chooseFromLang(from);
         await this.chooseToLang(to);
     }
 
-    private async chooseFromLang(lang: string) {
-        const button = browser.$('.tlid-open-source-language-list');
-        await browser.wait(ExpectedConditions.visibilityOf(button), 3000);
-        await button.click();
+    private async chooseFromLang(lang: string): Promise<void> {
+        await browser.wait(ExpectedConditions.visibilityOf(this.openSource), 3000);
+        await this.openSource.click();
 
-        const searchBox = browser.$('.tlid-open-source-language-list');
-        await browser.wait(ExpectedConditions.visibilityOf(searchBox), 3000);
-        await browser.$('#sl_list-search-box').sendKeys(lang + protractor.Key.ENTER);
+        await browser.wait(ExpectedConditions.visibilityOf(this.slSearch), 3000);
+        this.slSearch.sendKeys(lang + protractor.Key.ENTER);
     }
 
     private async chooseToLang(lang: string) {
-        const button = browser.$('.tlid-target-source-language-list');
-        await browser.wait(ExpectedConditions.visibilityOf(button), 3000);
-        await button.click();
+        await browser.wait(ExpectedConditions.visibilityOf(this.targetSource), 3000);
+        await this.targetSource.click();
 
-        const searchBox = browser.$('#tl_list-search-box');
-        await browser.wait(ExpectedConditions.visibilityOf(searchBox), 3000);
-        await browser.$('#tl_list-search-box').sendKeys(lang + protractor.Key.ENTER);
+        await browser.wait(ExpectedConditions.visibilityOf(this.tlSearch), 3000);
+        await this.tlSearch.sendKeys(lang + protractor.Key.ENTER);
     }
 }
