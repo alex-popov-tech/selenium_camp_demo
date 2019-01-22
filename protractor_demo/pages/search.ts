@@ -20,7 +20,7 @@ export class Search {
         await browser.actions().sendKeys(protractor.Key.ENTER).perform();
     }
 
-    async navigateToTranslation() {
+    public async navigateToTranslation(): Promise<void> {
         await this.navigation.translate();
     }
 }

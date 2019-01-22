@@ -14,7 +14,6 @@ export const config = {
         stopSpecOnExpectationFailure: true
     },
     specs: ['./specs/*-spec.js'],
-    seleniumAddress: "http://localhost:4444/wd/hub",
     capabilities: {
         browserName: 'chrome',
         chromeOptions: {args: ['--no-sandbox']}

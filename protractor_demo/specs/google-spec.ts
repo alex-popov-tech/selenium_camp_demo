@@ -7,10 +7,6 @@ const searchPage = new Search();
 const resultsPage = new Results();
 const translatePage = new Translate();
 
-beforeEach(async () => {
-    await browser.waitForAngularEnabled(false);
-});
-
 describe('google search', () => {
     // it('should return 17 results', async () => {
     //     await searchPage.open();

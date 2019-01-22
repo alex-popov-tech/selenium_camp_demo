@@ -13,20 +13,19 @@ export class Navigation {
     public async translate(): Promise<void> {
         await browser.wait(ExpectedConditions.elementToBeClickable(this.button), 3000);
         await this.button.click();
-        await browser.wait(async () => {
-            const webelements = await this.menus.getWebElements();
-            for (const webelement of webelements) {
-                if ((await webelement.isDisplayed()) && ('Translate' === await webelement.getText())) {
-                    return true;
-                }
-            }
-            return false;
-        });
+        await browser.actions().mouseMove(this.button).perform();
+        const menu = await this.findMenu('Translate');
+        await browser.wait(ExpectedConditions.elementToBeClickable(menu), 3000);
+        await menu.click();
+    }
 
-        const webelements = await this.menus.getWebElements();
-        for (const webelement of webelements) {
-            if ((await webelement.isDisplayed()) && ('Translate' === await webelement.getText())) {
-                await webelement.click();
+    private async findMenu(name: string): Promise<ElementFinder> {
+        await browser.wait(ExpectedConditions.visibilityOf(this.menus.first()));
+        const count = await this.menus.count();
+        for (let i = 0; i < count; i++) {
+            const menu = await this.menus.get(i);
+            if (await menu.getText() === name) {
+                return menu;
             }
         }
     }
