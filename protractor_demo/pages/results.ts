@@ -1,5 +1,5 @@
 import { Navigation } from '../widgets/navigation';
-import { $$, browser, by, ElementArrayFinder, ElementFinder } from 'protractor';
+import {$$, browser, by, ElementArrayFinder, ElementFinder, ExpectedConditions} from 'protractor';
 
 export class Results {
     private readonly navigation: Navigation;
@@ -19,14 +19,9 @@ export class Results {
     }
 
     public async followNthResultLink(index: number): Promise<void> {
-        await browser.wait(async () => {
-            const container: ElementFinder = await this.elements.get(index);
-            const result = container.$('a');
-            return await result.isDisplayed();
-        }, 3000);
-
         const container: ElementFinder = await this.elements.get(index);
         const result = container.$('a');
+        await browser.wait(ExpectedConditions.elementToBeClickable(result), 5000);
         await result.click();
     }
 

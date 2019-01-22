@@ -15,7 +15,7 @@ export class Search {
     }
 
     public async search(text: string): Promise<void> {
-        await browser.wait(ExpectedConditions.visibilityOf(this.input), 5000);
+        await browser.wait(ExpectedConditions.elementToBeClickable(this.input), 5000);
         await this.input.sendKeys(text);
         await browser.actions().sendKeys(protractor.Key.ENTER).perform();
     }
