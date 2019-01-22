@@ -29,10 +29,10 @@ describe('google search', () => {
         it('should return correct translation', async () => {
             await searchPage.open();
             await searchPage.navigateToTranslation();
-            // await translatePage.chooseLangs('English', 'Russian');
-            // await translatePage.translate('selenide js is awesome');
-            //
-            // await translatePage.shouldHaveTranslation('Селенид JS является удивительным');
+            await translatePage.chooseLangs('English', 'Russian');
+            await translatePage.translate('selenide js is awesome');
+
+            await translatePage.shouldHaveTranslation('Селенид JS является удивительным');
         });
     });
 });
