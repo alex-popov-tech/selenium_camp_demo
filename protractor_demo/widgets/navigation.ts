@@ -6,14 +6,13 @@ export class Navigation {
     private readonly menus: ElementArrayFinder;
 
     constructor() {
-        this.button = $('.gb_xc');
+        this.button = $('#gbwa');
         this.menus = $$('.gb_T');
     }
 
     public async translate(): Promise<void> {
         await browser.wait(ExpectedConditions.elementToBeClickable(this.button), 3000);
         await this.button.click();
-        await browser.actions().mouseMove(this.button).perform();
         const menu = await this.findMenu('Translate');
         await browser.wait(ExpectedConditions.elementToBeClickable(menu), 3000);
         await menu.click();
