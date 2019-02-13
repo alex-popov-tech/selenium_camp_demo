@@ -3,10 +3,10 @@ import {$$, browser, by, ElementArrayFinder, ElementFinder, ExpectedConditions} 
 
 export class Results {
     private readonly navigation = new Navigation();
-    private readonly elements = $$('.g .r');
+    private readonly results = $$('.g .r');
 
     public async followNthResultLink(index: number): Promise<void> {
-        const result = this.elements.get(index).$('a');
+        const resultLink = this.results.get(index).$('a');
         
         await browser.wait(ExpectedConditions.elementToBeClickable(result), 5000);
         await result.click();
