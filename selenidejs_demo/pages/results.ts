@@ -3,8 +3,6 @@ import { Navigation } from '../widgets/navigation';
 
 export class Results {
 
-    private readonly navigationMenu = new Navigation();
-
     async shouldHaveNthResults(quantity) {
         await Browser.all('.g .r').should(have.size(quantity));
     }
@@ -14,9 +12,5 @@ export class Results {
             .get(index)
             .element('a')
             .click();
-    }
-
-    async navigateToTranslation() {
-        await this.navigationMenu.translate();
     }
 }
