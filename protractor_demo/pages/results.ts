@@ -17,5 +17,4 @@ export class Results {
             return quantity === await this.elements.count();
         }, 5000);
     }
-
 }
