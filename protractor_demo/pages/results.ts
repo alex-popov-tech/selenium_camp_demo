@@ -2,7 +2,6 @@ import { Navigation } from '../widgets/navigation';
 import {$$, browser, by, ElementArrayFinder, ElementFinder, ExpectedConditions} from 'protractor';
 
 export class Results {
-    private readonly navigation = new Navigation();
     private readonly results = $$('.g .r');
 
     public async followNthResultLink(index: number): Promise<void> {
@@ -19,7 +18,4 @@ export class Results {
         }, 5000);
     }
 
-    public async navigateToTranslation(): Promise<void> {
-        await this.navigation.translate();
-    }
 }
