@@ -17,12 +17,10 @@ export class Results {
 
     async followNthResultLink(index) {
         
-        const elem = $('div').$('a')
-
-        browser.url('https://google.com')
+        const results = $$('.rc');
+        browser.url('http://google.com/ncr');
+        console.log(results.length); // prints 0
         
-        elem.waitForVisible()
-        elem.click() // WORKS!
         
         await this.results
             .get(index)
