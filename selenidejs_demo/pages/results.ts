@@ -20,7 +20,7 @@ export class Results {
 
         browser.url('http://google.com/ncr');
         const results = $$('.rc');
-        console.log(results.length); // prints 0
+        console.log(results.length); // prints 8
         
         
         await this.results
