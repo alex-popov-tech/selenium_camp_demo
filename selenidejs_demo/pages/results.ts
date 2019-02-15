@@ -17,7 +17,7 @@ export class Results {
 
     async followNthResultLink(index) {
         
-        Browser.all('a')
+        const links = Browser.all('a')
             .filteredBy(be.visible)
             .filteredBy(have.attribute('foo', 'bar'))
 
