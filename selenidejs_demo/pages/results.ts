@@ -1,4 +1,4 @@
-import { be, Browser, have } from 'selenidejs';
+import { Browser, With, be, have } from 'selenidejs';
 import { Navigation } from '../widgets/navigation';
 
 export class Results {
