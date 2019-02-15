@@ -17,7 +17,9 @@ export class Results {
 
     async followNthResultLink(index) {
         
-        Browser.all('a').filteredBy(be.visible.and(have.attribute('foo', 'bar'))
+        Browser.all('a')
+            .filteredBy(be.visible)
+            .filteredBy(have.attribute('foo', 'bar'))
 
         Browser.element('a').should(be.enabled)
         
