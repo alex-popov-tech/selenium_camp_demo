@@ -17,8 +17,9 @@ export class Results {
 
     async followNthResultLink(index) {
         
-        const results = $$('.rc');
+
         browser.url('http://google.com/ncr');
+        const results = $$('.rc');
         console.log(results.length); // prints 0
         
         
