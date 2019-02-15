@@ -17,13 +17,12 @@ export class Results {
 
     async followNthResultLink(index) {
         
-        const links = Browser.all('a')
-            .filteredBy(be.visible)
-            .filteredBy(have.attribute('foo', 'bar'))
+        const elem = $('div').$('a')
 
-        Browser.element('a').should(be.enabled)
+        browser.url('https://google.com')
         
-        Browser.should(have.url('google.com'))
+        elem.waitForVisible()
+        elem.click() // WORKS!
         
         await this.results
             .get(index)
