@@ -16,6 +16,9 @@ export class Results {
     }
 
     async followNthResultLink(index) {
+        
+        Browser.all('a').filteredBy(be.visible.and(have.attribute('foo', 'bar'))
+        
         await this.results
             .get(index)
             .element('a')
