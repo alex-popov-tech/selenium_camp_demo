@@ -21,9 +21,7 @@ export class Results {
             .element('a')
             .click();
         
-        const link = Browser.element('div')
-            .all('.link')
-            .get(5)
-            .element('a')
+        const results = Browser.all('.g .r').filteredBy(be.visible)
+        const firstVisibleResult = Browser.all('.g .r').findBy(be.visible)
     }
 }
