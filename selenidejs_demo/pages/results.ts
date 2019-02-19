@@ -20,8 +20,5 @@ export class Results {
             .get(index)
             .element('a')
             .click();
-        
-        const results = Browser.all('.g .r').filteredBy(be.visible)
-        const firstButtonWithText = Browser.all('button').findBy(have.text('Continue'))
     }
 }
