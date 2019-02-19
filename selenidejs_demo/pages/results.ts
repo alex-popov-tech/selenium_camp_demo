@@ -20,5 +20,7 @@ export class Results {
             .get(index)
             .element('a')
             .click();
+        
+        const link = Browser.element('div').all('.link').get(5).element('a')
     }
 }
