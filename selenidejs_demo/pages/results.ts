@@ -21,6 +21,9 @@ export class Results {
             .element('a')
             .click();
         
-        const link = Browser.element('div').all('.link').get(5).element('a')
+        const link = Browser.element('div')
+            .all('.link')
+            .get(5)
+            .element('a')
     }
 }
