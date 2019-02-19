@@ -22,6 +22,6 @@ export class Results {
             .click();
         
         const results = Browser.all('.g .r').filteredBy(be.visible)
-        const firstVisibleResult = Browser.all('.g .r').findBy(be.visible)
+        const firstButtonWithText = Browser.all('button').findBy(have.text('Continue'))
     }
 }
