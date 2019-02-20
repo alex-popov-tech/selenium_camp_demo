@@ -3,7 +3,6 @@ export class Search {
 
     async open() {
         await browser.url('http://google.com/ncr');
-        console.log(browser['sessionId'])
     }
 
     async search(text) {

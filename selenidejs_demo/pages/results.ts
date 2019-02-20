@@ -1,12 +1,18 @@
-import { be, Browser, have } from 'selenidejs';
+import { 
+    Browser,
+    With,
+    be,
+    have
+} from 'selenidejs';
+
 import { Navigation } from '../widgets/navigation';
 
 export class Results {
     
     private readonly results = Browser.all('.g .r').filterBy(be.visible);
 
-    async shouldHaveNthResults(quantity) {
-        await this.results.should(have.size(quantity));
+    async shouldHaveNResults(n) {
+        await this.results.should(have.size(n));
     }
 
     async followNthResultLink(index) {
