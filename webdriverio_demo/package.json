@@ -21,6 +21,7 @@
     "@wdio/sync": "^5.2.8",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
+    "selenidejs": "^0.2.8",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.7.0",
     "tslint": "^5.12.1",

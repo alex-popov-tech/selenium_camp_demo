@@ -1,11 +1,8 @@
 import { Results } from '../pages/results';
 import { Search } from '../pages/search';
-// import { Translate } from '../pages/translate';
-import './base';
 
 const searchPage = new Search();
 const resultsPage = new Results();
-// const translatePage = new Translate();
 
 
 describe('google', () => {

@@ -1,11 +1,12 @@
-import { Navigation } from '../widgets/navigation';
 
 export class Results {
 
     async shouldHaveNthResults(quantity) {
-        await browser.waitUntil(async () => {
-            return quantity === await browser.$$('.g .r').length;
-        }, 5000);
+    //await browser.waitUntil(async () => {
+    //return quantity === await browser.$$('.g .r').length;
+    //}, 5000);
+    const {Browser, be, have} = require('selenidejs');
+    await Browser.all('.g .r').filterBy(be.visible).should(have.size(quantity));
     }
 
     async followNthResultLink(index) {
