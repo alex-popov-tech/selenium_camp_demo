@@ -28,6 +28,7 @@ export class Results {
             }
             return quantity === filtered.length + 1;
         }, 5000;
+        browser.$$('.g .r')[index].$('a').waitForDisplayed(5000);
         browser.$$('.g .r')[index].$('a').click();
     }
 
