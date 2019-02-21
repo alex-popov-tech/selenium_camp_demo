@@ -1,24 +1,34 @@
-
 export class Results {
 
-    async shouldHaveNthResults(quantity) {
-    const {Browser, be, have} = require('selenidejs');
-    await Browser.all('.g .r').filterBy(be.visible).should(have.size(quantity));
-    }
-
-    async followNthResultLink(index) {
-        await browser.waitUntil(async () => {
-            const elements = await browser.$$('.g .r');
+    shouldHaveNthResults(quantity) {
+      browser.waitUntil(async () => {
+            const elements =  browser.$$('.g .r');
             const filtered = [];
-            for (const elem of elements) {
-                if (await elem.isDisplayed()) {
+            for (let index = 0; index < elements.length; index++) {
+              const elem = elements[index];
+                if ( elem.isDisplayed()) {
                     // @ts-ignore
                     filtered.push(elem);
                 }
             }
-            return index === filtered.length + 1;
+            return quantity === filtered.length + 1;
         }, 5000);
-        await browser.$$('.g .r')[index].$('a').click();
+    }
+
+    followNthResultLink(index) {
+         browser.waitUntil(async () => {
+            const elements =  browser.$$('.g .r');
+            const filtered = [];
+            for (let index = 0; index < elements.length; index++) {
+              const elem = elements[index];
+                if ( elem.isDisplayed()) {
+                    // @ts-ignore
+                    filtered.push(elem);
+                }
+            }
+            return quantity === filtered.length + 1;
+        }, 5000;
+        browser.$$('.g .r')[index].$('a').click();
     }
 
 }
