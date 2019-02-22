@@ -16,6 +16,7 @@ describe('google', () => {
             await searchPage.search('selenide js npm');
 
             await resultsPage.shouldHaveNthResults(10);
+
         });
 
         it('should follows first result link', async function () {
@@ -35,6 +36,10 @@ describe('google', () => {
             await translatePage.translate('selenide js is awesome');
 
             await translatePage.shouldHaveTranslation('Селенид JS является удивительным');
+
+
+
+            Browser.
         });
     });
 });
